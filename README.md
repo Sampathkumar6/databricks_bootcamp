@@ -15,11 +15,12 @@ The pipeline implements a classic **Medallion Architecture** (Bronze → Silver 
 3. **Gold Layer**   :
     --Houses business-ready data modeled into a star schema required for reporting and analytics.
 
+```mermaid
 flowchart LR
     A[Raw CSV Files] -->|Volume Ingestion| B[Bronze Delta Layer]
     B -->|PySpark Transformations| C[Silver Delta Layer]
     C -->|Star Schema Aggregations| D[Gold Delta Layer]
-
+```
 
 <table>
   <tr>
