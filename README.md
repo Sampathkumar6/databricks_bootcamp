@@ -17,12 +17,17 @@ The pipeline implements a classic **Medallion Architecture** (Bronze → Silver 
 
 ```mermaid
 flowchart LR
-    A[Raw CSV Files] -->|Volume Ingestion| B
+    A["Raw CSV<br/>Files"]
 
-    subgraph W[Databricks Workflow]
-      B[Bronze Delta Layer] -->|PySpark Transformations| C[Silver Delta Layer]
-      C -->|Star Schema Modeling| D[Gold Delta Layer]
+    subgraph W["Databricks Workflow"]
+        B["Bronze<br/>Delta Layer"]
+        C["Silver<br/>Delta Layer"]
+        D["Gold<br/>Delta Layer"]
     end
+
+    A -->|Volume Ingestion| B
+    B -->|PySpark Transformations| C
+    C -->|Star Schema Modeling| D
 ```
 
 ---
