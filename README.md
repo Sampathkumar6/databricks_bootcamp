@@ -19,7 +19,7 @@ The pipeline implements a classic **Medallion Architecture** (Bronze → Silver 
 flowchart LR
     A[Raw CSV Files] -->|Volume Ingestion| B
 
-    subgraph W[Databricks Workflow] 
+    subgraph W[Databricks Workflow]
       B[Bronze Delta Layer] -->|PySpark Transformations| C[Silver Delta Layer]
       C -->|Star Schema Modeling| D[Gold Delta Layer]
     end
