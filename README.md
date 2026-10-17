@@ -9,7 +9,7 @@ An end-to-end cloud data pipeline implemented on **Databricks**, designed to pro
 The pipeline implements a classic **Medallion Architecture** (Bronze → Silver → Gold) to enforce data quality, schema evolution, and transactional integrity at scale:
 
 1. **Bronze Layer** :
-    -- Stores raw data as-is from the source systems. Data is ingested from CSV Files into SQL Server Database.
+    -- Stores raw data as-is, ingested from CSV files in a Unity Catalog Volume into Delta tables.
 2. **Silver Layer** :
     -- This layer includes data cleansing, standardization, and normalization processes to prepare data for analysis.
 3. **Gold Layer**   :
@@ -17,9 +17,12 @@ The pipeline implements a classic **Medallion Architecture** (Bronze → Silver 
 
 ```mermaid
 flowchart LR
-    A[Raw CSV Files] -->|Volume Ingestion| B[Bronze Delta Layer]
-    B -->|PySpark Transformations| C[Silver Delta Layer]
-    C -->|Star Schema Aggregations| D[Gold Delta Layer]
+    A[Raw CSV Files] -->|Volume Ingestion| B
+
+    subgraph W[Databricks Workflow] 
+      B[Bronze Delta Layer] -->|PySpark Transformations| C[Silver Delta Layer]
+      C -->|Star Schema Modeling| D[Gold Delta Layer]
+    end
 ```
 
 ---
@@ -51,7 +54,7 @@ flowchart LR
 
 ### 1. Ingestion & Storage Setup (Bronze Layer)
 - Configured Unity Catalog schemas for `bronze`, `silver`, and `gold` layers.
-- Created an External Volume under the `bronze` schema to store incoming raw CSV source files.
+- Created an managed Volume under the `bronze` schema to store incoming raw CSV source files.
 - Ingested raw CSV datasets into Bronze Delta tables using PySpark DataFrame.
 
 ### 2. Standardisation & Cleaning (Silver Layer)
@@ -121,9 +124,9 @@ code
 │   ├── silver_crm_prd_info.py      # Standardisation & transformations
 │   ├── silver_crm_sales_details.py # Standardisation & transformations
 │   ├── silver_erp_cust_az12.py     # Standardisation & transformations
-│   └── silver_erp_loc_a101.py      # Standardisation & transformations
-│   ├── silver_erp_px_cat_g1v2.py   # Standardisation & transformations
-├── 3_gold/
+│   ├── silver_erp_loc_a101.py      # Standardisation & transformations
+│   └── silver_erp_px_cat_g1v2.py   # Standardisation & transformations
+├── gold_layer/
 │   ├── gold_dim_customers.py       # Final business ready data for downstream 
 │   ├── gold_dim_products.py        # Final business ready data for downstream
 │   ├── gold_fact_sales.py          # Final business ready data for downstream
