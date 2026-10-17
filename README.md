@@ -22,15 +22,6 @@ flowchart LR
     C -->|Star Schema Aggregations| D[Gold Delta Layer]
 ```
 
-<table>
-  <tr>
-    <th align="center">Data Architecture</th>
-  </tr>
-  <tr>
-    <td align="center"><img src="images/High_level_architecture.PNG" width="300" alt="Data Architecture"></td>
-  </tr>
-</table>
-
 ---
 ## 💡 Key Architectural Concepts & Learnings
 
