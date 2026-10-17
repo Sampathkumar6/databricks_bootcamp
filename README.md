@@ -125,8 +125,8 @@ code
 │   ├── silver_erp_px_cat_g1v2.py   # Standardisation & transformations
 ├── 3_gold/
 │   ├── gold_dim_customers.py       # Final business ready data for downstream 
-│   ├── gold_dim_products.py        # Standardisation & transformations
-│   ├── gold_fact_sales.py          # Standardisation & transformations
+│   ├── gold_dim_products.py        # Final business ready data for downstream
+│   ├── gold_fact_sales.py          # Final business ready data for downstream
 ├── images/                         # Relevant screenshots
 └── README.md
 ```
