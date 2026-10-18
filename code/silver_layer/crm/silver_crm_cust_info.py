@@ -15,7 +15,7 @@ from pyspark.sql.functions import trim,col
 
 # COMMAND ----------
 
-df = spark.table("workspace.bronze.crm_cust_info")
+df = spark.table("proj01_bootcamp.bronze.crm_cust_info")
 
 # COMMAND ----------
 
@@ -105,7 +105,7 @@ for old_name, new_name in RENAME_MAP.items():
     df.write
     .mode("overwrite")
     .format("delta")
-    .saveAsTable("workspace.silver.cust_info")
+    .saveAsTable("proj01_bootcamp.silver.crm_customers")
 )
 
 # COMMAND ----------
@@ -116,4 +116,4 @@ for old_name, new_name in RENAME_MAP.items():
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC select * from workspace.silver.cust_info limit 50;
+# MAGIC select * from proj01_bootcamp.silver.crm_customers limit 50;

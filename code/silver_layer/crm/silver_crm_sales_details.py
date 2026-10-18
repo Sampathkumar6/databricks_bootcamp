@@ -15,7 +15,7 @@ from pyspark.sql.functions import col, trim, length
 
 # COMMAND ----------
 
-df = spark.table("workspace.bronze.crm_sales_details")
+df = spark.table("proj01_bootcamp.bronze.crm_sales_details")
 
 # COMMAND ----------
 
@@ -117,7 +117,7 @@ df.limit(10).display()
     df.write
     .mode("overwrite")
     .format("delta")
-    .saveAsTable("workspace.silver.sales_details")
+    .saveAsTable("proj01_bootcamp.silver.crm_sales")
 )
 
 # COMMAND ----------
@@ -128,4 +128,4 @@ df.limit(10).display()
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC select * from workspace.silver.prod_info limit 50;
+# MAGIC select * from proj01_bootcamp.silver.crm_sales limit 50;
