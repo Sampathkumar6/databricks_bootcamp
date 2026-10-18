@@ -17,10 +17,10 @@
 df = (
     spark.read.option("header","true")
     .option("inferSchema","true")
-    .csv(["/Volumes/workspace/bronze/souce_data/source_crm/cust_info.csv"]
+    .csv(["/Volumes/proj01_bootcamp/bronze/source_data/cust_info.csv"]
         )
     )
-df.write.mode("overwrite").saveAsTable("bronze.crm_cust_info")
+df.write.mode("overwrite").saveAsTable("proj01_bootcamp.bronze.crm_cust_info")
 
 # COMMAND ----------
 
@@ -32,9 +32,9 @@ df.write.mode("overwrite").saveAsTable("bronze.crm_cust_info")
 df = (
     spark.read.option("header","true")
     .option("inferSchema","true")
-    .csv(["/Volumes/workspace/bronze/souce_data/source_crm/prd_info.csv"])
+    .csv(["/Volumes/proj01_bootcamp/bronze/source_data/prd_info.csv"])
     )
-df.write.mode("overwrite").saveAsTable("bronze.crm_prd_info")
+df.write.mode("overwrite").saveAsTable("proj01_bootcamp.bronze.crm_prd_info")
 
 # COMMAND ----------
 
@@ -46,9 +46,9 @@ df.write.mode("overwrite").saveAsTable("bronze.crm_prd_info")
 df = (
     spark.read.option("header","true")
     .option("inferSchema","true")
-    .csv(["/Volumes/workspace/bronze/souce_data/source_crm/sales_details.csv"])
+    .csv(["/Volumes/proj01_bootcamp/bronze/source_data/sales_details.csv"])
     )
-df.write.mode("overwrite").saveAsTable("bronze.crm_sales_details")
+df.write.mode("overwrite").saveAsTable("proj01_bootcamp.bronze.crm_sales_details")
 
 # COMMAND ----------
 
@@ -60,9 +60,9 @@ df.write.mode("overwrite").saveAsTable("bronze.crm_sales_details")
 df = (
     spark.read.option("header","true")
     .option("inferSchema","true")
-    .csv(["/Volumes/workspace/bronze/souce_data/source_erp/CUST_AZ12.csv"])
+    .csv(["/Volumes/proj01_bootcamp/bronze/source_data/CUST_AZ12.csv"])
     )
-df.write.mode("overwrite").saveAsTable("bronze.erp_CUST_AZ12")
+df.write.mode("overwrite").saveAsTable("proj01_bootcamp.bronze.erp_cust_az12")
 
 # COMMAND ----------
 
@@ -74,9 +74,9 @@ df.write.mode("overwrite").saveAsTable("bronze.erp_CUST_AZ12")
 df = (
     spark.read.option("header","true")
     .option("inferSchema","true")
-    .csv(["/Volumes/workspace/bronze/souce_data/source_erp/LOC_A101.csv"])
+    .csv(["/Volumes/proj01_bootcamp/bronze/source_data/LOC_A101.csv"])
     )
-df.write.mode("overwrite").saveAsTable("bronze.erp_LOC_A101")
+df.write.mode("overwrite").saveAsTable("proj01_bootcamp.bronze.erp_loc_a101")
 
 # COMMAND ----------
 
@@ -88,6 +88,6 @@ df.write.mode("overwrite").saveAsTable("bronze.erp_LOC_A101")
 df = (
     spark.read.option("header","true")
     .option("inferSchema","true")
-    .csv(["/Volumes/workspace/bronze/souce_data/source_erp/PX_CAT_G1V2.csv"])
+    .csv(["/Volumes/proj01_bootcamp/bronze/source_data/PX_CAT_G1V2.csv"])
     )
-df.write.mode("overwrite").saveAsTable("bronze.erp_PX_CAT_G1V2")
+df.write.mode("overwrite").saveAsTable("proj01_bootcamp.bronze.erp_px_cat_g1v2")
