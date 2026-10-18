@@ -15,7 +15,7 @@ from pyspark.sql.functions import trim, col
 
 # COMMAND ----------
 
-df = spark.table("workspace.bronze.erp_loc_a101")
+df = spark.table("proj01_bootcamp.bronze.erp_loc_a101")
 
 # COMMAND ----------
 
@@ -87,7 +87,7 @@ df.limit(10).display()
 
 # COMMAND ----------
 
-df.write.mode("overwrite").format("delta").saveAsTable("workspace.silver.erp_customer_location")
+df.write.mode("overwrite").format("delta").saveAsTable("proj01_bootcamp.silver.erp_customer_location")
 
 # COMMAND ----------
 
@@ -97,4 +97,4 @@ df.write.mode("overwrite").format("delta").saveAsTable("workspace.silver.erp_cus
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT * FROM workspace.silver.erp_customer_location LIMIT 10
+# MAGIC SELECT * FROM proj01_bootcamp.silver.erp_customer_location LIMIT 10
