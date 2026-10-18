@@ -15,10 +15,10 @@ SELECT
     sd.sales_amount,
     sd.quantity,
     sd.price
-FROM silver.crm_sales sd
-LEFT JOIN gold.dim_products pr
+FROM proj01_bootcamp.silver.crm_sales sd
+LEFT JOIN proj01_bootcamp.gold.dim_products pr
     ON sd.product_number = pr.product_number
-LEFT JOIN gold.dim_customers cu
+LEFT JOIN proj01_bootcamp.gold.dim_customers cu
     ON sd.customer_id = cu.customer_id;
 """
 df = spark.sql(query)
@@ -30,7 +30,7 @@ df = spark.sql(query)
 
 # COMMAND ----------
 
-df.write.mode("overwrite").format("delta").saveAsTable("workspace.gold.fact_sales")
+df.write.mode("overwrite").format("delta").saveAsTable("proj01_bootcamp.gold.fact_sales")
 
 # COMMAND ----------
 
@@ -40,4 +40,4 @@ df.write.mode("overwrite").format("delta").saveAsTable("workspace.gold.fact_sale
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT * FROM workspace.gold.fact_sales LIMIT 10
+# MAGIC SELECT * FROM proj01_bootcamp.gold.fact_sales LIMIT 10

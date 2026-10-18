@@ -16,8 +16,8 @@ SELECT
     pc.maintenance_flag,
     pn.product_line,
     pn.start_date
-FROM silver.crm_products pn
-LEFT JOIN silver.erp_product_category pc
+FROM proj01_bootcamp.silver.crm_products pn
+LEFT JOIN proj01_bootcamp.silver.erp_product_category pc
     ON pn.category_id = pc.category_id
 --WHERE pn.end_date IS NULL; -- Filter out all historical data
 """
@@ -30,7 +30,7 @@ df = spark.sql(query)
 
 # COMMAND ----------
 
-df.write.mode("overwrite").format("delta").saveAsTable("workspace.gold.dim_products")
+df.write.mode("overwrite").format("delta").saveAsTable("proj01_bootcamp.gold.dim_products")
 
 # COMMAND ----------
 
@@ -40,4 +40,4 @@ df.write.mode("overwrite").format("delta").saveAsTable("workspace.gold.dim_produ
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT * FROM workspace.gold.dim_products LIMIT 10
+# MAGIC SELECT * FROM proj01_bootcamp.gold.dim_products LIMIT 10

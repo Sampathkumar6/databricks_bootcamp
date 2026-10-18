@@ -19,10 +19,10 @@ SELECT
     END AS gender,
     ca.birth_date AS birthdate,
     ci.customer_create_date AS create_date
-FROM silver.crm_customers ci
-LEFT JOIN silver.erp_customers ca
+FROM proj01_bootcamp.silver.crm_customers ci
+LEFT JOIN proj01_bootcamp.silver.erp_customers ca
     ON ci.customer_key = ca.customer_number
-LEFT JOIN silver.erp_customer_location la
+LEFT JOIN proj01_bootcamp.silver.erp_customer_location la
     ON ci.customer_key = la.customer_number
 """
 df = spark.sql(query)
@@ -34,7 +34,7 @@ df = spark.sql(query)
 
 # COMMAND ----------
 
-df.write.mode("overwrite").format("delta").saveAsTable("workspace.gold.dim_customers")
+df.write.mode("overwrite").format("delta").saveAsTable("proj01_bootcamp.gold.dim_customers")
 
 # COMMAND ----------
 
@@ -44,4 +44,4 @@ df.write.mode("overwrite").format("delta").saveAsTable("workspace.gold.dim_custo
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT * FROM workspace.gold.dim_customers LIMIT 10
+# MAGIC SELECT * FROM proj01_bootcamp.gold.dim_customers LIMIT 10
